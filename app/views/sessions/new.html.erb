@@ -1,0 +1,24 @@
+<h1>Log in</h1>
+ <% unless current_user %>
+  <%= form_for(:session) do |f| %>
+    <div class="field">
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :password %><br>
+      <%= f.password_field :password %>
+    </div>
+      <div><%= f.submit "Log in" %></div>
+    </div>
+    <p><%= link_to "New user signup", new_user_path %></p>
+    <% end %>
+  <% end %>
+
+<% if current_user %>
+<p>User: <%= current_user.email %></p>
+<p>User ID: <%= current_user.id %></p>
+<p>Session ID: <%= session.id %></p>
+<div><%= link_to "Log out", @session, method: :delete %></div>
+<% end %>
+
